@@ -1,0 +1,31 @@
+{% extends "employees/base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>About Meridian Works</h1>
+  <p>A small employee directory built to practise Django views, templates and static files.</p>
+</header>
+
+<section class="prose">
+  <p>Meridian Works is a made-up company. This site lets you browse its staff, open any profile, and see how employees are grouped by salary level.</p>
+
+  <h2>How the site works</h2>
+  <ul>
+    <li>Employee records are a Python list in <code>views.py</code>. There is no database.</li>
+    <li>Each view passes that list to a template, and a <code>{% verbatim %}{% for %}{% endverbatim %}</code> loop builds one badge per employee.</li>
+    <li>Every employee has their own address, such as <code>/employee/101/</code>. The view reads the ID from the URL and finds the matching record.</li>
+    <li>Profile photos and the stylesheet are served from the <code>static</code> folder.</li>
+    <li>A small function turns each salary into Senior, Mid or Junior Level.</li>
+  </ul>
+
+  <h2>Pages</h2>
+  <ul>
+    <li>Home: summary and three featured employees</li>
+    <li>Employee list: every employee as a badge</li>
+    <li>Employee details: the full record for one person</li>
+    <li>About and Contact</li>
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "employees/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero__text">
+    <h1>Find any teammate in seconds.</h1>
+    <p>Browse the Meridian Works directory, open a profile, and see each person's department, experience, city and salary level.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="{% url 'employee_list' %}">View all employees</a>
+      <a class="btn btn--ghost" href="{% url 'about' %}">How this site works</a>
+    </div>
+  </div>
+
+  <div class="hero__badges" aria-label="Featured employees">
+    {% for e in featured %}
+    <div class="hang hang--{{ forloop.counter }}">
+      <span class="hang__strap" aria-hidden="true"></span>
+      {% include "employees/_badge.html" %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="facts" aria-label="Directory summary">
+  <dl>
+    <div><dt>Employees</dt><dd>{{ total }}</dd></div>
+    <div><dt>Active now</dt><dd>{{ active }}</dd></div>
+    <div><dt>Departments</dt><dd>{{ departments }}</dd></div>
+    <div><dt>Cities</dt><dd>{{ cities }}</dd></div>
+  </dl>
+</section>
+
+<section class="levels">
+  <h2>How salary levels work</h2>
+  <p class="levels__intro">Every employee gets a level based on monthly salary. The rule runs in views.py.</p>
+  <div class="levels__grid">
+    <div class="levels__item">
+      <span class="level level--senior-level">Senior Level</span>
+      <p>Salary of 50,000 or more</p>
+    </div>
+    <div class="levels__item">
+      <span class="level level--mid-level">Mid Level</span>
+      <p>Salary of 30,000 to 49,999</p>
+    </div>
+    <div class="levels__item">
+      <span class="level level--junior-level">Junior Level</span>
+      <p>Salary below 30,000</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

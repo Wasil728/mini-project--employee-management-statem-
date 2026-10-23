@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Meridian Works{% endblock %} | Employee Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'employees/css/style.css' %}">
+</head>
+<body>
+  {% with current=request.resolver_match.url_name %}
+  <header class="navbar">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="{% url 'home' %}">Meridian Works</a>
+      <nav class="navbar__links" aria-label="Main">
+        <a href="{% url 'home' %}" {% if current == 'home' %}aria-current="page"{% endif %}>Home</a>
+        <a href="{% url 'employee_list' %}" {% if current == 'employee_list' or current == 'employee_detail' %}aria-current="page"{% endif %}>Employees</a>
+        <a href="{% url 'about' %}" {% if current == 'about' %}aria-current="page"{% endif %}>About</a>
+        <a href="{% url 'contact' %}" {% if current == 'contact' %}aria-current="page"{% endif %}>Contact</a>
+      </nav>
+    </div>
+  </header>
+  {% endwith %}
+
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>Meridian Works employee directory. Task 15, Django mini project. Data is stored in views.py, with no database.</p>
+  </footer>
+</body>
+</html>

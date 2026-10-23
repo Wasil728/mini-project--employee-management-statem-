@@ -1,0 +1,52 @@
+{% extends "employees/base.html" %}
+{% load static humanize %}
+
+{% block title %}{{ employee.name }}{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'employee_list' %}">Back to all employees</a>
+
+<section class="profile">
+  <div class="hang hang--static">
+    <span class="hang__strap" aria-hidden="true"></span>
+    <div class="badge badge--large">
+      <span class="badge__slot" aria-hidden="true"></span>
+      <img class="badge__photo" src="{% static 'employees/images/'|add:employee.profile_image %}" alt="Profile photo of {{ employee.name }}" width="240" height="240">
+      <span class="badge__name">{{ employee.name }}</span>
+      <span class="badge__role">{{ employee.designation }}</span>
+      <span class="badge__tags">
+        <span class="level level--{{ employee.level|slugify }}">{{ employee.level }}</span>
+      </span>
+      <span class="badge__id">ID {{ employee.id }}</span>
+    </div>
+  </div>
+
+  <div class="record">
+    <h1>{{ employee.name }}</h1>
+    <p class="record__sub">{{ employee.designation }} in {{ employee.department }}</p>
+
+    <dl class="record__list">
+      <div><dt>Employee ID</dt><dd>{{ employee.id }}</dd></div>
+      <div><dt>Department</dt><dd>{{ employee.department }}</dd></div>
+      <div><dt>Designation</dt><dd>{{ employee.designation }}</dd></div>
+      <div><dt>Monthly salary</dt><dd>₹{{ employee.salary|intcomma }}</dd></div>
+      <div><dt>Experience</dt><dd>{{ employee.experience }} year{{ employee.experience|pluralize }}</dd></div>
+      <div><dt>City</dt><dd>{{ employee.city }}</dd></div>
+      <div>
+        <dt>Status</dt>
+        <dd><span class="status status--{{ employee.status|slugify }}">{{ employee.status }}</span></dd>
+      </div>
+      <div>
+        <dt>Salary level</dt>
+        <dd><span class="level level--{{ employee.level|slugify }}">{{ employee.level }}</span></dd>
+      </div>
+    </dl>
+
+    <p class="record__note">
+      {% if employee.level == "Senior Level" %}Salary is 50,000 or more, so this employee is Senior Level.
+      {% elif employee.level == "Mid Level" %}Salary is between 30,000 and 49,999, so this employee is Mid Level.
+      {% else %}Salary is below 30,000, so this employee is Junior Level.{% endif %}
+    </p>
+  </div>
+</section>
+{% endblock %}

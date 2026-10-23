@@ -1,0 +1,13 @@
+{% load static %}
+<a class="badge" href="{% url 'employee_detail' e.id %}">
+  <span class="badge__slot" aria-hidden="true"></span>
+  <img class="badge__photo" src="{% static 'employees/images/'|add:e.profile_image %}" alt="Profile photo of {{ e.name }}" width="160" height="160">
+  <span class="badge__name">{{ e.name }}</span>
+  <span class="badge__role">{{ e.designation }}</span>
+  <span class="badge__dept">{{ e.department }}, {{ e.city }}</span>
+  <span class="badge__tags">
+    <span class="level level--{{ e.level|slugify }}">{{ e.level }}</span>
+    <span class="status status--{{ e.status|slugify }}">{{ e.status }}</span>
+  </span>
+  <span class="badge__id">ID {{ e.id }}</span>
+</a>

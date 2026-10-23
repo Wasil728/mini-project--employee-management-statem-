@@ -1,0 +1,18 @@
+{% extends "employees/base.html" %}
+
+{% block title %}Employees{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1>Employees</h1>
+  <p>{{ employees|length }} people. Select a badge to open the full profile.</p>
+</header>
+
+<div class="badge-grid">
+  {% for e in employees %}
+    {% include "employees/_badge.html" %}
+  {% empty %}
+    <p class="empty">No employees yet. Add one to the employees list in views.py.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Profile placeholder">
+  <rect width="320" height="320" fill="#D6EBDD"/>
+  
+  <path d="M40 320c0-56 44-92 120-92s120 36 120 92z" fill="#14705A"/>
+  <rect x="142" y="190" width="36" height="46" rx="14" fill="#B77B57"/>
+  <ellipse cx="160" cy="150" rx="50" ry="58" fill="#B77B57"/>
+  <path d="M108 130c-2-36 22-58 52-58s56 22 52 58c-10-16-28-26-52-26s-42 10-52 26z" fill="#241812"/>
+</svg>
